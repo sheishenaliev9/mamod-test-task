@@ -16,12 +16,15 @@ export default {
 </script>
 
 <style>
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #f5f5f5;
-  font-family: "Montserrat", sans-serif;
 }
 
 #app {
