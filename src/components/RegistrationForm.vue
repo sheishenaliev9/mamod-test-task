@@ -14,11 +14,43 @@
           <custom-input type="string" placeholder="Имя" />
           <custom-input type="email" placeholder="Email" />
         </div>
-        <select name="" id=""></select>
+
+        <div>
+          <select name="" id=""></select>
+        </div>
+
         <div class="registration-form__inner__inputs__block">
           <custom-input type="password" placeholder="Пароль" />
           <custom-input type="password" placeholder="Повторите пароль" />
         </div>
+      </div>
+    </div>
+
+    <div class="registration-form__footer">
+      <div class="registration-form__footer__public">
+        <div class="registration-form__footer__public__slider">
+          <label class="switch">
+            <input type="checkbox" v-model="isChecked" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="registration-form__footer__public__title">
+          <p>Хотите чтобы Ваш профиль видели другие участники платформы?</p>
+          <p>Включает профиль для просмотра другими пользователями по ссылке</p>
+        </div>
+      </div>
+
+      <div class="registration-form__footer__privacy">
+        <div class="registration-form__footer__privacy__title">
+          <input type="checkbox" />
+          <p>
+            Регистрируясь, Вы соглашаетесь
+            <a href="#">с политикой конфиденциальности</a> и обработкой
+            <a href="#">персональных данных</a>
+          </p>
+        </div>
+
+        <button>Зарегистрироваться</button>
       </div>
     </div>
   </form>
@@ -30,6 +62,11 @@ export default {
   name: "App",
   components: {
     CustomInput,
+  },
+  data() {
+    return {
+      isChecked: true,
+    };
   },
 };
 </script>
@@ -54,7 +91,7 @@ export default {
 
 .registration-form__inner__title h3 {
   font-size: 16px;
-  font-weight: medium;
+  font-weight: 500;
 }
 
 .registration-form__inner__inputs {
@@ -68,4 +105,132 @@ export default {
   align-items: center;
   gap: 15px;
 }
+
+/* ---------------------------------------- */
+/* Registration form footer */
+
+.registration-form__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 23px 15px 0 30px;
+}
+
+.registration-form__footer__public {
+  display: flex;
+}
+
+.registration-form__footer__public__slider {
+  display: flex;
+  align-items: flex-start;
+}
+
+.registration-form__footer__public__title {
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.registration-form__footer__public__title p {
+  margin: 0;
+}
+
+.registration-form__footer__public__title p:last-child {
+  color: #696977;
+  font-size: 14px;
+}
+
+.registration-form__footer__privacy {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration-form__footer__privacy__title {
+  display: flex;
+  align-items: flex-start;
+  width: 66%;
+}
+
+.registration-form__footer__privacy__title p {
+  margin: 0;
+}
+
+.registration-form__footer__privacy button {
+  border: none;
+  outline: none;
+  border-radius: 8px;
+
+  width: 27%;
+  font-size: 12px;
+  color: #497ada;
+  background-color: rgba(73, 122, 218, 0.2);
+  transition: 0.2s;
+}
+
+.registration-form__footer__privacy button:active {
+  opacity: 0.7;
+}
+/* ---------------------------------------- */
+
+/* ---------------------------------------- */
+/* slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 39px;
+  height: 19px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  right: 25px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  border: 1px solid gray;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* ---------------------------------------- */
 </style>
