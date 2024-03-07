@@ -1,24 +1,32 @@
 <template>
   <div id="app">
+    <registration-form />
   </div>
 </template>
 
 <script>
+import RegistrationForm from "./components/RegistrationForm.vue";
 
 export default {
   name: "App",
   components: {
+    RegistrationForm,
   },
 };
 </script>
 
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
