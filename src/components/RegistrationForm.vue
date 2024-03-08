@@ -11,17 +11,36 @@
 
       <div class="registration-form__inner__inputs">
         <div class="registration-form__inner__inputs__block">
-          <custom-input type="string" placeholder="Имя" />
-          <custom-input type="email" placeholder="Email" />
+          <custom-input type="string" placeholder="Имя" :showIcon="false" />
+          <custom-input type="email" placeholder="Email" :showIcon="false" />
         </div>
 
-        <div>
-          <select name="" id=""></select>
+        <div class="registration-form__inner__position">
+          <select v-model="selectedPosition">
+            <option disabled>Должность</option>
+            <option
+              v-for="position in positions"
+              :key="position.value"
+              :value="position.name"
+            >
+              {{ position.name }}
+            </option>
+          </select>
         </div>
 
         <div class="registration-form__inner__inputs__block">
-          <custom-input type="password" placeholder="Пароль" />
-          <custom-input type="password" placeholder="Повторите пароль" />
+          <custom-input
+            type="password"
+            placeholder="Пароль"
+            :showIcon="true"
+            @toggle-password="togglePasswordIcon"
+          />
+          <custom-input
+            type="password"
+            placeholder="Повторите пароль"
+            :showIcon="true"
+            @toggle-password="togglePasswordIcon"
+          />
         </div>
       </div>
     </div>
@@ -42,8 +61,11 @@
 
       <div class="registration-form__footer__privacy">
         <div class="registration-form__footer__privacy__title">
-          <input type="checkbox" />
-          <p>
+          <input
+            type="checkbox"
+            class="registration-form__footer__privacy__title__checkbox"
+          />
+          <p class="registration-form__footer__privacy__title__text">
             Регистрируясь, Вы соглашаетесь
             <a href="#">с политикой конфиденциальности</a> и обработкой
             <a href="#">персональных данных</a>
@@ -63,9 +85,21 @@ export default {
   components: {
     CustomInput,
   },
+  methods: {
+    togglePasswordIcon() {
+      this.showPasswordIcon = !this.showPasswordIcon;
+    },
+  },
   data() {
     return {
       isChecked: true,
+      showPasswordIcon: false,
+      selectedPosition: "Должность",
+      positions: [
+        { value: 1, name: "Менеджер" },
+        { value: 2, name: "Разработчик" },
+        { value: 3, name: "Дизайнер" },
+      ],
     };
   },
 };
@@ -74,7 +108,6 @@ export default {
 <style>
 .registration-form {
   width: 960px;
-  height: 547px;
   border-radius: 15px;
   background-color: #fff;
 }
@@ -106,6 +139,22 @@ export default {
   gap: 15px;
 }
 
+.registration-form__inner__position {
+  display: flex;
+  justify-content: flex-end;
+}
+.registration-form__inner__position select {
+  padding-left: 10px;
+  color: #9292a0;
+  font-size: 14px;
+  letter-spacing: 1px;
+
+  border: 1px solid #d9d9d9;
+  outline: none;
+  width: 449px;
+  height: 40px;
+  border-radius: 15px;
+}
 /* ---------------------------------------- */
 /* Registration form footer */
 
@@ -113,7 +162,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding: 23px 15px 0 30px;
+  padding: 23px 15px 50px 30px;
 }
 
 .registration-form__footer__public {
@@ -149,20 +198,31 @@ export default {
 .registration-form__footer__privacy__title {
   display: flex;
   align-items: flex-start;
+  gap: 10px;
   width: 66%;
+}
+
+.registration-form__footer__privacy__title__checkbox {
+  transform: scale(1.5);
+  cursor: pointer;
 }
 
 .registration-form__footer__privacy__title p {
   margin: 0;
 }
 
+.registration-form__footer__privacy__title p a {
+  text-decoration: none;
+  color: #3586ff;
+}
+
 .registration-form__footer__privacy button {
   border: none;
   outline: none;
   border-radius: 8px;
+  cursor: pointer;
 
   width: 27%;
-  font-size: 12px;
   color: #497ada;
   background-color: rgba(73, 122, 218, 0.2);
   transition: 0.2s;
