@@ -12,6 +12,7 @@
 <script>
 import RegistrationForm from "./components/RegistrationForm.vue";
 import SuccessMessage from "./components/SuccessMessage.vue";
+
 export default {
   name: "App",
   components: {
