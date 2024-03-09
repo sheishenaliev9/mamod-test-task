@@ -1,6 +1,13 @@
 <template>
   <div class="input-container">
-    <input class="custom-input" :type="inputType" :placeholder="placeholder" />
+    <input
+      class="custom-input"
+      :class="{ 'error-input': isEmpty }"
+      :type="type"
+      :placeholder="placeholder"
+      :value="value"
+      @input="updateValue"
+    />
     <img
       v-if="showIcon"
       :src="iconStateType"
@@ -8,6 +15,7 @@
       class="eye-icon"
       @click="toggleInputType"
     />
+    <span class="error-text" v-if="isEmpty">Это поле обязательное!</span>
   </div>
 </template>
 
@@ -18,23 +26,28 @@ export default {
     type: String,
     placeholder: String,
     showIcon: Boolean,
+    value: String,
+    isEmpty: Boolean,
   },
   data() {
     return {
-      inputType: this.type,
+      inputValue: this.value,
     };
-  },
-  methods: {
-    toggleInputType() {
-      this.inputType = this.inputType === "password" ? "text" : "password";
-      this.$emit("toggle-password");
-    },
   },
   computed: {
     iconStateType() {
       return this.inputType === "text"
         ? require("../../assets/icons/hided.svg")
         : require("../../assets/icons/showed.svg");
+    },
+  },
+  methods: {
+    updateValue(event) {
+      this.$emit("input", event.target.value);
+    },
+    toggleInputType() {
+      this.inputType = this.inputType === "password" ? "text" : "password";
+      this.$emit("toggle-password");
     },
   },
 };
@@ -67,5 +80,18 @@ export default {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+}
+.error-input {
+  border: 1px solid red !important;
+}
+
+.error-text {
+  position: absolute;
+  right: 15px;
+  bottom: 35px;
+  padding: 0 5px;
+  color: red;
+  background-color: #fff;
+  font-size: 12px;
 }
 </style>
