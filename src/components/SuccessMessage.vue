@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Success.vue",
+  name: "SuccessMessage.vue",
   props: {
     successMessage: String,
   },
