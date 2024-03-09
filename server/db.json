@@ -1,3 +1,31 @@
 {
-  "data": []
+  "data": [
+    {
+      "id": "0bcf",
+      "public": true,
+      "username": "dsa",
+      "email": "dsa@dsa.dsa",
+      "position": 1,
+      "password": "dsa",
+      "repeatPassword": "dsa"
+    },
+    {
+      "id": "3ea2",
+      "public": true,
+      "username": "dsadadsa",
+      "email": "dsa@dsa.dsa",
+      "position": 1,
+      "password": "das",
+      "repeatPassword": "das"
+    },
+    {
+      "id": "0f8a",
+      "public": true,
+      "username": "dsa",
+      "email": "da@gmai.dsa",
+      "position": 2,
+      "password": "das",
+      "repeatPassword": "das"
+    }
+  ]
 }
