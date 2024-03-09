@@ -187,6 +187,7 @@ export default {
 
       try {
         await axios.post("http://localhost:3000/data", this.dataToSend);
+        this.$emit("registration-success");
       } catch (error) {
         console.log(error);
       }

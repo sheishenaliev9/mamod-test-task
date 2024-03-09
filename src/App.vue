@@ -1,16 +1,27 @@
 <template>
   <div id="app">
-    <registration-form />
+    <registration-form
+      v-if="!isSuccess"
+      @registration-success="handleRegistrationSuccess"
+    />
+    <success-message v-else success-message="Регистрация успешно прошла!" />
   </div>
 </template>
 
 <script>
 import RegistrationForm from "./components/RegistrationForm.vue";
+import SuccessMessage from "./SuccessMessage.vue";
 
 export default {
   name: "App",
   components: {
     RegistrationForm,
+    SuccessMessage,
+  },
+  methods: {
+    handleRegistrationSuccess() {
+      this.isSuccess = true;
+    },
   },
 };
 </script>
