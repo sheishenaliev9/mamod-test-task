@@ -52,4 +52,3 @@ body {
   align-items: center;
 }
 </style>
-./components/SuccessMessage.vue

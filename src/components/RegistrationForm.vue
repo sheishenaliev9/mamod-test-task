@@ -183,7 +183,6 @@ export default {
     },
 
     async sendData() {
-      console.log(this.dataToSend);
       if (!this.validateInputs()) {
         return;
       }
