@@ -3,7 +3,7 @@
     <input
       class="custom-input"
       :class="{ 'error-input': isEmpty }"
-      :type="type"
+      :type="inputType"
       :placeholder="placeholder"
       :value="value"
       @input="updateValue"
@@ -34,6 +34,7 @@ export default {
   },
   data() {
     return {
+      inputType: this.type || "text",
       inputValue: this.value,
     };
   },

@@ -1,17 +1,18 @@
 <template>
   <div id="app">
     <registration-form
-      v-if="isSuccess"
+      v-if="!isSuccess"
       @registration-success="handleRegistrationSuccess"
     />
 
-    <success-message successMessage="Регистрация успешно прошла!" v-else />
+    <success-message success-message="Регистрация успешно прошла!" v-else />
   </div>
 </template>
 
 <script>
 import RegistrationForm from "./components/RegistrationForm.vue";
 import SuccessMessage from "./components/SuccessMessage.vue";
+
 export default {
   name: "App",
   components: {
@@ -30,6 +31,7 @@ export default {
   },
 };
 </script>
+
 
 <style>
 html {
