@@ -15,7 +15,9 @@
       class="eye-icon"
       @click="toggleInputType"
     />
-    <span class="error-text" v-if="isEmpty">Это поле обязательное!</span>
+    <span class="error-input-text" v-if="isEmpty">{{
+      samePassword ? "пароли не совпадают!" : "Это поле обязательное!"
+    }}</span>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
     showIcon: Boolean,
     value: String,
     isEmpty: Boolean,
+    samePassword: Boolean,
   },
   data() {
     return {
@@ -85,7 +88,7 @@ export default {
   border: 1px solid red !important;
 }
 
-.error-text {
+.error-input-text {
   position: absolute;
   right: 15px;
   bottom: 35px;

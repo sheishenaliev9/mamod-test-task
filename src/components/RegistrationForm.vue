@@ -48,6 +48,9 @@
               {{ position.name }}
             </option>
           </select>
+          <span v-if="isEmpty.position" class="error-select-text">
+            выберите должность!
+          </span>
         </div>
 
         <div class="registration-form__inner__inputs__block">
@@ -64,6 +67,7 @@
             placeholder="Повторите пароль"
             :showIcon="true"
             :isEmpty="isEmpty.repeatPassword"
+            :samePassword="isEmpty.repeatPassword"
             v-model="dataToSend.repeatPassword"
             @toggle-password="togglePasswordIcon"
           />
@@ -158,10 +162,19 @@ export default {
 
         this.isEmpty[field] = isValueEmpty;
 
-        if (isValueEmpty || this.dataToSend.position === null) {
+        if (isValueEmpty) {
           isValid = false;
         }
       });
+      if (this.dataToSend.position === null) {
+        this.isEmpty.position = true;
+        isValid = false;
+      }
+
+      if (this.dataToSend.password !== this.dataToSend.repeatPassword) {
+        this.isEmpty.repeatPassword = true;
+        isValid = false;
+      }
 
       return isValid;
     },
@@ -217,6 +230,7 @@ export default {
 }
 
 .registration-form__inner__position {
+  position: relative;
   display: flex;
   justify-content: flex-end;
 }
@@ -236,6 +250,16 @@ export default {
 
 .error-select {
   border: 1px solid red !important;
+}
+
+.error-select-text {
+  position: absolute;
+  right: 15px;
+  bottom: 32px;
+  padding: 0 5px;
+  color: red;
+  background-color: #fff;
+  font-size: 12px;
 }
 /* ---------------------------------------- */
 /* Registration form footer */
